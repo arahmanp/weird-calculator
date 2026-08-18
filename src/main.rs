@@ -1,6 +1,21 @@
 const APP_RUNNING: u32 = 100;
 const APP_STOPPED: u32 = 200;
 
+fn help(cmd: &[&str]) {
+    if cmd.len() != 1 {
+        println!("The \'HELP\' command does not require any arguments!");
+        return;
+    }
+    
+    println!("Available commands:");
+    println!("");
+    println!("    HELP            Display all available commands");
+    println!("    EXIT            Exit the program");
+    println!("");
+}
+
+
+
 fn app_init() {
     let logo = r#"
      _       ________________  ____ 
