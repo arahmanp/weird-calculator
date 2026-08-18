@@ -1,3 +1,5 @@
+use std::io::{self, Write};
+
 const APP_RUNNING: u32 = 100;
 const APP_STOPPED: u32 = 200;
 
@@ -70,4 +72,20 @@ fn main() {
     let mut app_status = APP_RUNNING;
     
     app_init();
+
+    while app_status == APP_RUNNING {
+        print!("> ");
+
+        io::stdout()
+            .flush()
+            .unwrap();
+
+        let mut cmd = String::new();
+
+        io::stdin()
+            .read_line(&mut cmd)
+            .expect("Failed to read input!");
+
+        app_status = exec_cmd(&cmd);
+    }
 }
