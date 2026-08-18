@@ -15,6 +15,7 @@ fn help(cmd: &[&str]) {
     println!("    ADD A B         Displaying the sum of two numbers A and B");
     println!("    SUBTR A B       Displaying the subtraction of two numbers A and B");
     println!("    MULTI A B       Displaying the multiplication of two numbers A and B");
+    println!("    DIV A B         Displaying the division of two numbers A and B");
     println!("    EXIT            Exit the program");
     println!("");
 }
@@ -94,6 +95,31 @@ fn multiply(cmd: &[&str]) {
     println!("{}", a * b);
 }
 
+fn divide(cmd: &[&str]) {
+    if cmd.len() != 3 {
+        println!("The \'DIV\' command requires two arguments!");
+        return;
+    }
+
+    let a = match cmd[1].parse::<f64>() {
+        Ok(num) => num,
+        Err(_) => {
+            println!("The argument has to be a number!");
+            return;
+        }
+    };
+
+    let b = match cmd[2].parse::<f64>() {
+        Ok(num) => num,
+        Err(_) => {
+            println!("The argument has to be a number!");
+            return;
+        }
+    };
+
+    println!("{}", a / b);
+}
+
 fn exit(cmd: &[&str]) -> u32 {
     if cmd.len() != 1 {
         println!("The \'EXIT\' command does not require any arguments!");
@@ -127,6 +153,10 @@ fn exec_cmd(cmd: &str) -> u32 {
         },
         "MULTI" => {
             multiply(&cmd);
+            return APP_RUNNING;
+        },
+        "DIV" => {
+            divide(&cmd);
             return APP_RUNNING;
         },
         "EXIT" => return exit(&cmd),
