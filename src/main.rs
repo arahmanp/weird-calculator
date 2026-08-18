@@ -23,6 +23,28 @@ fn exit(cmd: &[&str]) -> u32 {
     APP_STOPPED
 }
 
+fn exec_cmd(cmd: &str) -> u32 {
+    let cmd = cmd.trim();
+
+    let cmd: Vec<&str> = cmd.split_whitespace().collect();
+
+    if cmd.is_empty() {
+        return APP_RUNNING;
+    }
+
+    match cmd[0] {
+        "HELP" => {
+            help(&cmd);
+            return APP_RUNNING;
+        },
+        "EXIT" => return exit(&cmd),
+        _ => {
+            println!("Invalid command!");
+            return APP_RUNNING;
+        }
+    }
+}
+
 fn app_init() {
     let logo = r#"
      _       ________________  ____ 
