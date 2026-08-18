@@ -1,22 +1,63 @@
 use std::io::{self, Write};
+use colored::*;
 
 const APP_RUNNING: u32 = 100;
 const APP_STOPPED: u32 = 200;
 
 fn help(cmd: &[&str]) {
     if cmd.len() != 1 {
-        println!("The \'HELP\' command does not require any arguments!");
+        println!("{}", "The \'HELP\' command does not require any arguments!".red().bold());
         return;
     }
     
-    println!("Available commands:");
-    println!("");
-    println!("    HELP            Showing all available commands");
-    println!("    ADD A B         Displaying the sum of two numbers A and B");
-    println!("    SUBTR A B       Displaying the subtraction of two numbers A and B");
-    println!("    MULTI A B       Displaying the multiplication of two numbers A and B");
-    println!("    DIV A B         Displaying the division of two numbers A and B");
-    println!("    EXIT            Exit the program");
+    println!("{}", " Available commands: ".bold().on_blue());
+    println!();
+
+    // Command + Argumen + Deskripsi
+    println!(
+        "    {}            {}",
+        "HELP".cyan().bold(),
+        "Showing all available commands".dimmed()
+    );
+
+    println!(
+        "    {} {} {}         {}",
+        "ADD".cyan().bold(),
+        "A".yellow(),
+        "B".yellow(),
+        "Displaying the sum of two numbers A and B".dimmed()
+    );
+
+    println!(
+        "    {} {} {}       {}",
+        "SUBTR".cyan().bold(),
+        "A".yellow(),
+        "B".yellow(),
+        "Displaying the subtraction of two numbers A and B".dimmed()
+    );
+
+    println!(
+        "    {} {} {}       {}",
+        "MULTI".cyan().bold(),
+        "A".yellow(),
+        "B".yellow(),
+        "Displaying the multiplication of two numbers A and B".dimmed()
+    );
+
+    println!(
+        "    {} {} {}         {}",
+        "DIV".cyan().bold(),
+        "A".yellow(),
+        "B".yellow(),
+        "Displaying the division of two numbers A and B".dimmed()
+    );
+
+    println!(
+        "    {}            {}",
+        "EXIT".red().bold(), // EXIT diberi warna merah indikasi keluar
+        "Exit the program".dimmed()
+    );
+
     println!("");
 }
 
