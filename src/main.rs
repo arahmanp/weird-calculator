@@ -13,6 +13,7 @@ fn help(cmd: &[&str]) {
     println!("");
     println!("    HELP            Showing all available commands");
     println!("    ADD A B         Displaying the sum of two numbers A and B");
+    println!("    SUBTR A B       Displaying the subtraction of two numbers A and B");
     println!("    EXIT            Exit the program");
     println!("");
 }
@@ -42,6 +43,31 @@ fn add(cmd: &[&str]) {
     println!("{}", a + b);
 }
 
+fn subtract(cmd: &[&str]) {
+    if cmd.len() != 3 {
+        println!("The \'SUBTR\' command requires two arguments!");
+        return;
+    }
+
+    let a = match cmd[1].parse::<f64>() {
+        Ok(num) => num,
+        Err(_) => {
+            println!("The argument has to be a number!");
+            return;
+        }
+    };
+
+    let b = match cmd[2].parse::<f64>() {
+        Ok(num) => num,
+        Err(_) => {
+            println!("The argument has to be a number!");
+            return;
+        }
+    };
+
+    println!("{}", a - b);
+}
+
 fn exit(cmd: &[&str]) -> u32 {
     if cmd.len() != 1 {
         println!("The \'EXIT\' command does not require any arguments!");
@@ -67,6 +93,10 @@ fn exec_cmd(cmd: &str) -> u32 {
         },
         "ADD" => {
             add(&cmd);
+            return APP_RUNNING;
+        },
+        "SUBTR" => {
+            subtract(&cmd);
             return APP_RUNNING;
         },
         "EXIT" => return exit(&cmd),
