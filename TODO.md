@@ -1,3 +1,3 @@
 # To-do list
 
-- nothing..
+- Replace every use of 'expect' with pattern matching
