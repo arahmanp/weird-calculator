@@ -21,6 +21,12 @@ fn help(cmd: &[&str]) {
     );
 
     println!(
+        "    {}           {}",
+        "CLEAR".cyan().bold(),
+        "Clearing the terminal screen".dimmed()
+    );
+
+    println!(
         "    {} {} {}         {}",
         "ADD".cyan().bold(),
         "A".yellow(),
@@ -59,6 +65,15 @@ fn help(cmd: &[&str]) {
     );
 
     println!("");
+}
+
+fn clear(cmd: &[&str]) {
+    if cmd.len() != 1 {
+        println!("{}", "The \'CLEAR\' command does not require any arguments!".red().bold());
+        return;
+    }
+
+    clearscreen::clear().expect("Failed to clear the terminal screen!");
 }
 
 fn add(cmd: &[&str]) {
@@ -182,6 +197,10 @@ fn exec_cmd(cmd: &str) -> u32 {
     match cmd[0] {
         "HELP" => {
             help(&cmd);
+            return APP_RUNNING;
+        },
+        "CLEAR" => {
+            clear(&cmd);
             return APP_RUNNING;
         },
         "ADD" => {
