@@ -63,14 +63,14 @@ fn help(cmd: &[&str]) {
 
 fn add(cmd: &[&str]) {
     if cmd.len() != 3 {
-        println!("The \'ADD\' command requires two arguments!");
+        println!("{}", "The \'ADD\' command requires two arguments!".red().bold());
         return;
     }
 
     let a = match cmd[1].parse::<f64>() {
         Ok(num) => num,
         Err(_) => {
-            println!("The argument has to be a number!");
+            println!("{}", "The argument has to be a number!".red().bold());
             return;
         }
     };
@@ -78,7 +78,7 @@ fn add(cmd: &[&str]) {
     let b = match cmd[2].parse::<f64>() {
         Ok(num) => num,
         Err(_) => {
-            println!("The argument has to be a number!");
+            println!("{}", "The argument has to be a number!".red().bold());
             return;
         }
     };
@@ -88,14 +88,14 @@ fn add(cmd: &[&str]) {
 
 fn subtract(cmd: &[&str]) {
     if cmd.len() != 3 {
-        println!("The \'SUBTR\' command requires two arguments!");
+        println!("{}", "The \'SUBTR\' command requires two arguments!".red().bold());
         return;
     }
 
     let a = match cmd[1].parse::<f64>() {
         Ok(num) => num,
         Err(_) => {
-            println!("The argument has to be a number!");
+            println!("{}", "The argument has to be a number!".red().bold());
             return;
         }
     };
@@ -103,7 +103,7 @@ fn subtract(cmd: &[&str]) {
     let b = match cmd[2].parse::<f64>() {
         Ok(num) => num,
         Err(_) => {
-            println!("The argument has to be a number!");
+            println!("{}", "The argument has to be a number!".red().bold());
             return;
         }
     };
@@ -113,14 +113,14 @@ fn subtract(cmd: &[&str]) {
 
 fn multiply(cmd: &[&str]) {
     if cmd.len() != 3 {
-        println!("The \'MULTI\' command requires two arguments!");
+        println!("{}", "The \'MULTI\' command requires two arguments!".red().bold());
         return;
     }
 
     let a = match cmd[1].parse::<f64>() {
         Ok(num) => num,
         Err(_) => {
-            println!("The argument has to be a number!");
+            println!("{}", "The argument has to be a number!".red().bold());
             return;
         }
     };
@@ -128,7 +128,7 @@ fn multiply(cmd: &[&str]) {
     let b = match cmd[2].parse::<f64>() {
         Ok(num) => num,
         Err(_) => {
-            println!("The argument has to be a number!");
+            println!("{}", "The argument has to be a number!".red().bold());
             return;
         }
     };
@@ -138,14 +138,14 @@ fn multiply(cmd: &[&str]) {
 
 fn divide(cmd: &[&str]) {
     if cmd.len() != 3 {
-        println!("The \'DIV\' command requires two arguments!");
+        println!("{}", "The \'DIV\' command requires two arguments!".red().bold());
         return;
     }
 
     let a = match cmd[1].parse::<f64>() {
         Ok(num) => num,
         Err(_) => {
-            println!("The argument has to be a number!");
+            println!("{}", "The argument has to be a number!".red().bold());
             return;
         }
     };
@@ -153,7 +153,7 @@ fn divide(cmd: &[&str]) {
     let b = match cmd[2].parse::<f64>() {
         Ok(num) => num,
         Err(_) => {
-            println!("The argument has to be a number!");
+            println!("{}", "The argument has to be a number!".red().bold());
             return;
         }
     };
@@ -163,7 +163,7 @@ fn divide(cmd: &[&str]) {
 
 fn exit(cmd: &[&str]) -> u32 {
     if cmd.len() != 1 {
-        println!("The \'EXIT\' command does not require any arguments!");
+        println!("{}", "The \'EXIT\' command does not require any arguments!".red().bold());
         return APP_RUNNING;
     }
 
@@ -202,7 +202,7 @@ fn exec_cmd(cmd: &str) -> u32 {
         },
         "EXIT" => return exit(&cmd),
         _ => {
-            println!("Invalid command!");
+            println!("{}", "Invalid command!".red().bold());
             return APP_RUNNING;
         }
     }
@@ -240,7 +240,7 @@ fn app_init() {
     ];
 
     println!();
-    
+
     // Print logo dengan efek gradien TrueColor
     for (line, (r, g, b)) in logo_lines.iter().zip(colors.iter()) {
         println!("{}", line.truecolor(*r, *g, *b).bold());
