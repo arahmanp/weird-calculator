@@ -14,7 +14,14 @@ fn help(cmd: &[&str]) {
     println!("");
 }
 
+fn exit(cmd: &[&str]) -> u32 {
+    if cmd.len() != 1 {
+        println!("The \'EXIT\' command does not require any arguments!");
+        return APP_RUNNING;
+    }
 
+    APP_STOPPED
+}
 
 fn app_init() {
     let logo = r#"
