@@ -11,9 +11,35 @@ fn help(cmd: &[&str]) {
     
     println!("Available commands:");
     println!("");
-    println!("    HELP            Display all available commands");
+    println!("    HELP            Showing all available commands");
+    println!("    ADD A B         Displaying the sum of two numbers A and B");
     println!("    EXIT            Exit the program");
     println!("");
+}
+
+fn add(cmd: &[&str]) {
+    if cmd.len() != 3 {
+        println!("The \'ADD\' command requires two arguments!");
+        return;
+    }
+
+    let a = match cmd[1].parse::<f64>() {
+        Ok(num) => num,
+        Err(_) => {
+            println!("The argument has to be a number!");
+            return;
+        }
+    };
+
+    let b = match cmd[2].parse::<f64>() {
+        Ok(num) => num,
+        Err(_) => {
+            println!("The argument has to be a number!");
+            return;
+        }
+    };
+
+    println!("{}", a + b);
 }
 
 fn exit(cmd: &[&str]) -> u32 {
@@ -37,6 +63,10 @@ fn exec_cmd(cmd: &str) -> u32 {
     match cmd[0] {
         "HELP" => {
             help(&cmd);
+            return APP_RUNNING;
+        },
+        "ADD" => {
+            add(&cmd);
             return APP_RUNNING;
         },
         "EXIT" => return exit(&cmd),
