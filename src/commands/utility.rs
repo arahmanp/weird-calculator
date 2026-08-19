@@ -1,5 +1,5 @@
 use colored::*;
-use crate::status;
+use crate::commands::{APP_RUNNING, APP_STOPPED};
 
 pub fn help(cmd: &[&str]) {
     if cmd.len() != 1 {
@@ -92,8 +92,8 @@ pub fn exit(cmd: &[&str]) -> u32 {
                 .red()
                 .bold()
         );
-        return status::APP_RUNNING;
+        return APP_RUNNING;
     }
 
-    status::APP_STOPPED
+    APP_STOPPED
 }
