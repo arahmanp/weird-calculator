@@ -7,6 +7,7 @@
 - Create a helper function to handle command's argument converting to f64 type
 - ~~Refactor the codebase into several separated file~~
 - ~~Add comments to the codebase~~
+- Separate app status to a file
 
 ## Later (for v0.2.0 release)
 
@@ -14,4 +15,4 @@
 - Add more operations
 - Log file
 - RES variable to store latest operation result
-- New desktop icon
+- Better UI/UX
