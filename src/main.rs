@@ -98,7 +98,7 @@ fn add(cmd: &[&str]) {
         }
     };
 
-    println!("{}", a + b);
+    println!("{:.10}", a + b);
 }
 
 fn subtract(cmd: &[&str]) {
@@ -123,7 +123,7 @@ fn subtract(cmd: &[&str]) {
         }
     };
 
-    println!("{}", a - b);
+    println!("{:.10}", a - b);
 }
 
 fn multiply(cmd: &[&str]) {
@@ -148,7 +148,7 @@ fn multiply(cmd: &[&str]) {
         }
     };
 
-    println!("{}", a * b);
+    println!("{:.10}", a * b);
 }
 
 fn divide(cmd: &[&str]) {
@@ -173,7 +173,7 @@ fn divide(cmd: &[&str]) {
         }
     };
 
-    println!("{}", a / b);
+    println!("{:.10}", a / b);
 }
 
 fn exit(cmd: &[&str]) -> u32 {
