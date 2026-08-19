@@ -14,3 +14,4 @@
 - Add more operations
 - Log file
 - RES variable to store latest operation result
+- New desktop icon
