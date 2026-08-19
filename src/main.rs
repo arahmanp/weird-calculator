@@ -1,123 +1,12 @@
 use colored::*;
 use std::io::{self, Write};
 
+mod math;
 mod ui;
 mod utility;
 
 pub const APP_RUNNING: u32 = 100;
 pub const APP_STOPPED: u32 = 200;
-
-fn add(cmd: &[&str]) {
-    if cmd.len() != 3 {
-        println!(
-            "{}",
-            "The \'ADD\' command requires two arguments!".red().bold()
-        );
-        return;
-    }
-
-    let a = match cmd[1].parse::<f64>() {
-        Ok(num) => num,
-        Err(_) => {
-            println!("{}", "The argument has to be a number!".red().bold());
-            return;
-        }
-    };
-
-    let b = match cmd[2].parse::<f64>() {
-        Ok(num) => num,
-        Err(_) => {
-            println!("{}", "The argument has to be a number!".red().bold());
-            return;
-        }
-    };
-
-    println!("{:.10}", a + b);
-}
-
-fn subtract(cmd: &[&str]) {
-    if cmd.len() != 3 {
-        println!(
-            "{}",
-            "The \'SUBTR\' command requires two arguments!".red().bold()
-        );
-        return;
-    }
-
-    let a = match cmd[1].parse::<f64>() {
-        Ok(num) => num,
-        Err(_) => {
-            println!("{}", "The argument has to be a number!".red().bold());
-            return;
-        }
-    };
-
-    let b = match cmd[2].parse::<f64>() {
-        Ok(num) => num,
-        Err(_) => {
-            println!("{}", "The argument has to be a number!".red().bold());
-            return;
-        }
-    };
-
-    println!("{:.10}", a - b);
-}
-
-fn multiply(cmd: &[&str]) {
-    if cmd.len() != 3 {
-        println!(
-            "{}",
-            "The \'MULTI\' command requires two arguments!".red().bold()
-        );
-        return;
-    }
-
-    let a = match cmd[1].parse::<f64>() {
-        Ok(num) => num,
-        Err(_) => {
-            println!("{}", "The argument has to be a number!".red().bold());
-            return;
-        }
-    };
-
-    let b = match cmd[2].parse::<f64>() {
-        Ok(num) => num,
-        Err(_) => {
-            println!("{}", "The argument has to be a number!".red().bold());
-            return;
-        }
-    };
-
-    println!("{:.10}", a * b);
-}
-
-fn divide(cmd: &[&str]) {
-    if cmd.len() != 3 {
-        println!(
-            "{}",
-            "The \'DIV\' command requires two arguments!".red().bold()
-        );
-        return;
-    }
-
-    let a = match cmd[1].parse::<f64>() {
-        Ok(num) => num,
-        Err(_) => {
-            println!("{}", "The argument has to be a number!".red().bold());
-            return;
-        }
-    };
-
-    let b = match cmd[2].parse::<f64>() {
-        Ok(num) => num,
-        Err(_) => {
-            println!("{}", "The argument has to be a number!".red().bold());
-            return;
-        }
-    };
-
-    println!("{:.10}", a / b);
-}
 
 fn exec_cmd(cmd: &str) -> u32 {
     let cmd = cmd.trim();
@@ -138,19 +27,19 @@ fn exec_cmd(cmd: &str) -> u32 {
             return APP_RUNNING;
         }
         "ADD" => {
-            add(&cmd);
+            math::add(&cmd);
             return APP_RUNNING;
         }
         "SUBTR" => {
-            subtract(&cmd);
+            math::subtract(&cmd);
             return APP_RUNNING;
         }
         "MULTI" => {
-            multiply(&cmd);
+            math::multiply(&cmd);
             return APP_RUNNING;
         }
         "DIV" => {
-            divide(&cmd);
+            math::divide(&cmd);
             return APP_RUNNING;
         }
         "EXIT" => return utility::exit(&cmd),
