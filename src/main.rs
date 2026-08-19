@@ -1,15 +1,20 @@
-use std::io::{self, Write};
 use colored::*;
+use std::io::{self, Write};
 
 const APP_RUNNING: u32 = 100;
 const APP_STOPPED: u32 = 200;
 
 fn help(cmd: &[&str]) {
     if cmd.len() != 1 {
-        println!("{}", "The \'HELP\' command does not require any arguments!".red().bold());
+        println!(
+            "{}",
+            "The \'HELP\' command does not require any arguments!"
+                .red()
+                .bold()
+        );
         return;
     }
-    
+
     println!("{}", " Available commands: ".bold().on_blue());
     println!();
 
@@ -69,10 +74,14 @@ fn help(cmd: &[&str]) {
 
 fn clear(cmd: &[&str]) {
     if cmd.len() != 1 {
-        println!("{}", "The \'CLEAR\' command does not require any arguments!".red().bold());
+        println!(
+            "{}",
+            "The \'CLEAR\' command does not require any arguments!"
+                .red()
+                .bold()
+        );
         return;
     }
-
 
     if let Err(_) = clearscreen::clear() {
         println!("{}", "Failed to clear the terminal screen!".red().bold());
@@ -81,7 +90,10 @@ fn clear(cmd: &[&str]) {
 
 fn add(cmd: &[&str]) {
     if cmd.len() != 3 {
-        println!("{}", "The \'ADD\' command requires two arguments!".red().bold());
+        println!(
+            "{}",
+            "The \'ADD\' command requires two arguments!".red().bold()
+        );
         return;
     }
 
@@ -106,7 +118,10 @@ fn add(cmd: &[&str]) {
 
 fn subtract(cmd: &[&str]) {
     if cmd.len() != 3 {
-        println!("{}", "The \'SUBTR\' command requires two arguments!".red().bold());
+        println!(
+            "{}",
+            "The \'SUBTR\' command requires two arguments!".red().bold()
+        );
         return;
     }
 
@@ -131,7 +146,10 @@ fn subtract(cmd: &[&str]) {
 
 fn multiply(cmd: &[&str]) {
     if cmd.len() != 3 {
-        println!("{}", "The \'MULTI\' command requires two arguments!".red().bold());
+        println!(
+            "{}",
+            "The \'MULTI\' command requires two arguments!".red().bold()
+        );
         return;
     }
 
@@ -156,7 +174,10 @@ fn multiply(cmd: &[&str]) {
 
 fn divide(cmd: &[&str]) {
     if cmd.len() != 3 {
-        println!("{}", "The \'DIV\' command requires two arguments!".red().bold());
+        println!(
+            "{}",
+            "The \'DIV\' command requires two arguments!".red().bold()
+        );
         return;
     }
 
@@ -181,7 +202,12 @@ fn divide(cmd: &[&str]) {
 
 fn exit(cmd: &[&str]) -> u32 {
     if cmd.len() != 1 {
-        println!("{}", "The \'EXIT\' command does not require any arguments!".red().bold());
+        println!(
+            "{}",
+            "The \'EXIT\' command does not require any arguments!"
+                .red()
+                .bold()
+        );
         return APP_RUNNING;
     }
 
@@ -201,27 +227,27 @@ fn exec_cmd(cmd: &str) -> u32 {
         "HELP" => {
             help(&cmd);
             return APP_RUNNING;
-        },
+        }
         "CLEAR" => {
             clear(&cmd);
             return APP_RUNNING;
-        },
+        }
         "ADD" => {
             add(&cmd);
             return APP_RUNNING;
-        },
+        }
         "SUBTR" => {
             subtract(&cmd);
             return APP_RUNNING;
-        },
+        }
         "MULTI" => {
             multiply(&cmd);
             return APP_RUNNING;
-        },
+        }
         "DIV" => {
             divide(&cmd);
             return APP_RUNNING;
-        },
+        }
         "EXIT" => return exit(&cmd),
         _ => {
             println!("{}", "Invalid command!".red().bold());
@@ -270,7 +296,9 @@ fn app_init() {
 
     println!(
         " {} {} {} {}",
-        " Weird Calculator ".on_custom_color(CustomColor::new(40, 40, 40)).bold(),
+        " Weird Calculator "
+            .on_custom_color(CustomColor::new(40, 40, 40))
+            .bold(),
         "v0.1".yellow().bold(),
         "• by".dimmed(),
         "Andhika Rahman".green().bold()
@@ -284,7 +312,7 @@ fn app_init() {
 
 fn main() {
     let mut app_status = APP_RUNNING;
-    
+
     app_init();
 
     while app_status == APP_RUNNING {
