@@ -73,7 +73,10 @@ fn clear(cmd: &[&str]) {
         return;
     }
 
-    clearscreen::clear().expect("Failed to clear the terminal screen!");
+
+    if let Err(_) = clearscreen::clear() {
+        println!("{}", "Failed to clear the terminal screen!".red().bold());
+    }
 }
 
 fn add(cmd: &[&str]) {
@@ -287,15 +290,15 @@ fn main() {
     while app_status == APP_RUNNING {
         print!("> ");
 
-        io::stdout()
-            .flush()
-            .unwrap();
+        if let Err(_) = io::stdout().flush() {
+            println!("{}", "Flush failed!".red().bold());
+        }
 
         let mut cmd = String::new();
 
-        io::stdin()
-            .read_line(&mut cmd)
-            .expect("Failed to read input!");
+        if let Err(_) = io::stdin().read_line(&mut cmd) {
+            println!("{}", "Failed to read input!".red().bold());
+        }
 
         app_status = exec_cmd(&cmd);
     }
