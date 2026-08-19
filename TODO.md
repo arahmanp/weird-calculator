@@ -9,6 +9,7 @@
 - ~~Create program's installer with Inno Setup~~
 - ~~Publish the installer on github release page~~
 
-## Later
+## Later (for v0.1.1 release)
 
 - Replace every use of 'expect' with pattern matching
+- Add desktop icon for Windows
