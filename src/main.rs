@@ -4,9 +4,7 @@ use std::io::{self, Write};
 mod math;
 mod ui;
 mod utility;
-
-pub const APP_RUNNING: u32 = 100;
-pub const APP_STOPPED: u32 = 200;
+mod status;
 
 fn exec_cmd(cmd: &str) -> u32 {
     let cmd = cmd.trim();
@@ -14,48 +12,48 @@ fn exec_cmd(cmd: &str) -> u32 {
     let cmd: Vec<&str> = cmd.split_whitespace().collect();
 
     if cmd.is_empty() {
-        return APP_RUNNING;
+        return status::APP_RUNNING;
     }
 
     match cmd[0] {
         "HELP" => {
             utility::help(&cmd);
-            return APP_RUNNING;
+            return status::APP_RUNNING;
         }
         "CLEAR" => {
             utility::clear(&cmd);
-            return APP_RUNNING;
+            return status::APP_RUNNING;
         }
         "ADD" => {
             math::add(&cmd);
-            return APP_RUNNING;
+            return status::APP_RUNNING;
         }
         "SUBTR" => {
             math::subtract(&cmd);
-            return APP_RUNNING;
+            return status::APP_RUNNING;
         }
         "MULTI" => {
             math::multiply(&cmd);
-            return APP_RUNNING;
+            return status::APP_RUNNING;
         }
         "DIV" => {
             math::divide(&cmd);
-            return APP_RUNNING;
+            return status::APP_RUNNING;
         }
         "EXIT" => return utility::exit(&cmd),
         _ => {
             println!("{}", "Invalid command!".red().bold());
-            return APP_RUNNING;
+            return status::APP_RUNNING;
         }
     }
 }
 
 fn main() {
-    let mut app_status = APP_RUNNING;
+    let mut app_status = status::APP_RUNNING;
 
     ui::app_init();
 
-    while app_status == APP_RUNNING {
+    while app_status == status::APP_RUNNING {
         print!("> ");
 
         if let Err(_) = io::stdout().flush() {
