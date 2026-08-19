@@ -2,93 +2,10 @@ use colored::*;
 use std::io::{self, Write};
 
 mod ui;
+mod utility;
 
-const APP_RUNNING: u32 = 100;
-const APP_STOPPED: u32 = 200;
-
-fn help(cmd: &[&str]) {
-    if cmd.len() != 1 {
-        println!(
-            "{}",
-            "The \'HELP\' command does not require any arguments!"
-                .red()
-                .bold()
-        );
-        return;
-    }
-
-    println!("{}", " Available commands: ".bold().on_blue());
-    println!();
-
-    // Command + Argumen + Deskripsi
-    println!(
-        "    {}            {}",
-        "HELP".cyan().bold(),
-        "Showing all available commands".dimmed()
-    );
-
-    println!(
-        "    {}           {}",
-        "CLEAR".cyan().bold(),
-        "Clearing the terminal screen".dimmed()
-    );
-
-    println!(
-        "    {} {} {}         {}",
-        "ADD".cyan().bold(),
-        "A".yellow(),
-        "B".yellow(),
-        "Displaying the sum of two numbers A and B".dimmed()
-    );
-
-    println!(
-        "    {} {} {}       {}",
-        "SUBTR".cyan().bold(),
-        "A".yellow(),
-        "B".yellow(),
-        "Displaying the subtraction of two numbers A and B".dimmed()
-    );
-
-    println!(
-        "    {} {} {}       {}",
-        "MULTI".cyan().bold(),
-        "A".yellow(),
-        "B".yellow(),
-        "Displaying the multiplication of two numbers A and B".dimmed()
-    );
-
-    println!(
-        "    {} {} {}         {}",
-        "DIV".cyan().bold(),
-        "A".yellow(),
-        "B".yellow(),
-        "Displaying the division of two numbers A and B".dimmed()
-    );
-
-    println!(
-        "    {}            {}",
-        "EXIT".red().bold(), // EXIT diberi warna merah indikasi keluar
-        "Exit the program".dimmed()
-    );
-
-    println!("");
-}
-
-fn clear(cmd: &[&str]) {
-    if cmd.len() != 1 {
-        println!(
-            "{}",
-            "The \'CLEAR\' command does not require any arguments!"
-                .red()
-                .bold()
-        );
-        return;
-    }
-
-    if let Err(_) = clearscreen::clear() {
-        println!("{}", "Failed to clear the terminal screen!".red().bold());
-    }
-}
+pub const APP_RUNNING: u32 = 100;
+pub const APP_STOPPED: u32 = 200;
 
 fn add(cmd: &[&str]) {
     if cmd.len() != 3 {
@@ -202,20 +119,6 @@ fn divide(cmd: &[&str]) {
     println!("{:.10}", a / b);
 }
 
-fn exit(cmd: &[&str]) -> u32 {
-    if cmd.len() != 1 {
-        println!(
-            "{}",
-            "The \'EXIT\' command does not require any arguments!"
-                .red()
-                .bold()
-        );
-        return APP_RUNNING;
-    }
-
-    APP_STOPPED
-}
-
 fn exec_cmd(cmd: &str) -> u32 {
     let cmd = cmd.trim();
 
@@ -227,11 +130,11 @@ fn exec_cmd(cmd: &str) -> u32 {
 
     match cmd[0] {
         "HELP" => {
-            help(&cmd);
+            utility::help(&cmd);
             return APP_RUNNING;
         }
         "CLEAR" => {
-            clear(&cmd);
+            utility::clear(&cmd);
             return APP_RUNNING;
         }
         "ADD" => {
@@ -250,7 +153,7 @@ fn exec_cmd(cmd: &str) -> u32 {
             divide(&cmd);
             return APP_RUNNING;
         }
-        "EXIT" => return exit(&cmd),
+        "EXIT" => return utility::exit(&cmd),
         _ => {
             println!("{}", "Invalid command!".red().bold());
             return APP_RUNNING;
