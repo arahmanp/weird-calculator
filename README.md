@@ -115,12 +115,10 @@ cargo build --release
 
 Some ideas for future development as Rust skills keep growing:
 
-- [ ] Command history (arrow key navigation)
 - [ ] Support for advanced operations (modulus, power, square root, etc.)
-- [ ] Support for inline math expressions (e.g. `2 + 3 * 4`)
-- [ ] Configurable decimal precision
+- [ ] Custom environment configuration
 - [ ] Unit tests for each calculation function
-- [ ] Release builds for Linux & macOS
+- [ ] Log file
 
 ---
 
