@@ -1,7 +1,7 @@
 use colored::*;
 use std::io::{self, Write};
 
-mod app_init;
+mod ui;
 
 const APP_RUNNING: u32 = 100;
 const APP_STOPPED: u32 = 200;
@@ -261,7 +261,7 @@ fn exec_cmd(cmd: &str) -> u32 {
 fn main() {
     let mut app_status = APP_RUNNING;
 
-    app_init::app_init();
+    ui::app_init();
 
     while app_status == APP_RUNNING {
         print!("> ");
