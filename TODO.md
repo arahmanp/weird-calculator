@@ -15,4 +15,5 @@
 - Add more operations
 - Log file
 - RES variable to store latest operation result
-- Better UI/UX
+- Better UI/UX, including but not limited to:
+  - Cleaner and more descriptive HELP output
